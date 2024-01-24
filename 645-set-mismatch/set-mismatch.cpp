@@ -2,13 +2,21 @@ class Solution {
 public:
     vector<int> findErrorNums(vector<int>& nums)
     {
+        int x,y;
+        int tmp=0;
         int n=nums.size();
-        int actual_sum=accumulate(nums.begin(),nums.end(),0);
-        unordered_set<int> s(nums.begin(),nums.end());
-        int unique_sum=accumulate(s.begin(),s.end(),0);
-        int expected_sum = n*(n + 1)/2;
-        int duplicate=actual_sum-unique_sum;
-        int missing=expected_sum-unique_sum;
-        return {duplicate, missing};
+        n=(n*(n+1))/2;
+        unordered_set<int> s;
+        for(int i:nums)
+        {
+            if(s.contains(i))
+                y=i;
+            else
+            {
+                s.insert(i);
+                tmp+=i;
+            }
+        }
+        return {y,n-tmp};
     }
 };
