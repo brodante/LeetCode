@@ -5,9 +5,9 @@ public:
         vector<int> tmp(nums);
         sort(tmp.begin(),tmp.end());
         long long ans=0;
-        for(int i=0;i<tmp.size();i++)
+        for(int i=0;i<tmp.size();++i)
             ans+=tmp[i];
-        for(int i=tmp.size()-1;i>0;i--)
+        for(int i=tmp.size()-1;i>0;--i)
             {
                 ans-=tmp[i];
                 if(ans>tmp[i])
