@@ -13,8 +13,6 @@ class Solution {
 public:
     int maxDepth(TreeNode* root)
     {
-        if(root==nullptr)
-            return 0;
         stack<pair<TreeNode*, int>> st;
         st.push({root,1});
         int res=0;
