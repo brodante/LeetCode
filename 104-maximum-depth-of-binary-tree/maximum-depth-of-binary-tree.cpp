@@ -15,6 +15,23 @@ public:
     {
         if(root==nullptr)
             return 0;
-        return 1+max(maxDepth(root->left),maxDepth(root->right));        
+        stack<pair<TreeNode*, int>> st;
+        st.push({root,1});
+        int res=0;
+        while(!st.empty())
+        {
+            pair<TreeNode*, int> topElement=st.top();
+            TreeNode* node = topElement.first;
+            int depth = topElement.second;
+            //auto[node,depth]=st.top();
+            st.pop();
+            if(node)
+            {
+                res=max(res,depth);
+                st.push({node->left,depth+1});
+                st.push({node->right,depth+1});
+            }
+        }
+        return res;
     }
 };
