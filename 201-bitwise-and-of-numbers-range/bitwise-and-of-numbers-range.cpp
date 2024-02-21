@@ -8,11 +8,6 @@ public:
             right>>=1;
             ++x;
         }
-        while(x--)
-        {
-            left<<=1;
-            right<<=1;
-        }
-        return left;
+        return left<<x;
     }
 };
