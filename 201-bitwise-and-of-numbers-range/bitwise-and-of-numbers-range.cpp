@@ -1,7 +1,7 @@
 class Solution {
 public:
     int rangeBitwiseAnd(int left, int right) {
-        int x = 0;
+        int x=0;
         while(left!=right)
         {
             left>>=1;
