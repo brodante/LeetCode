@@ -9,6 +9,6 @@ public:
             right>>=1;
             ++i;
         }
-        return right<<i;
+        return left<<i;
     }
 };
