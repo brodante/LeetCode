@@ -1,16 +1,17 @@
+const int MY_INFINITY=1e5;
 class Solution {
 public:
     int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k)
     {
-        vector<int> c(n,1e5);
-        c[src]=0;
-        for(int z=0;z<=k;++z)
+        vector<int> ans(n,MY_INFINITY);
+        ans[src]=0;
+        for(int i=0;i<=k;++i)
         {
-            vector<int> C(c);
+            vector<int> tmp(ans);
             for(auto e:flights)
-                C[e[1]]=min(C[e[1]],c[e[0]]+e[2]);
-            c=C;
+                tmp[e[1]]=min(tmp[e[1]],ans[e[0]]+e[2]);
+            ans=tmp;
         }
-        return c[dst]==1e5?-1:c[dst];
+        return ans[dst]==MY_INFINITY?-1:ans[dst];
     }
 };
