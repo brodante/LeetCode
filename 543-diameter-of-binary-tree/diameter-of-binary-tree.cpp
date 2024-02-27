@@ -9,22 +9,29 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
 class Solution {
 private:
-    int solve(TreeNode* root, int &ans)
+    int calculateDiameter(TreeNode* root, int& diameter)
     {
         if(root==nullptr)
             return 0;
-        int left_dia=solve(root->left,ans);
-        int right_dia=solve(root->right,ans);
-        ans=max(ans,left_dia+right_dia);
-        return max(left_dia,right_dia)+1;
+        // Recursively calculate the height of the left and right subtrees
+        int leftHeight = calculateDiameter(root->left, diameter);
+        int rightHeight = calculateDiameter(root->right, diameter);
+
+        // Update the diameter if the current node's diameter is greater
+        diameter = max(diameter, leftHeight + rightHeight);
+
+        // Return the height of the current subtree
+        return 1 + max(leftHeight, rightHeight);
     }
 public:
     int diameterOfBinaryTree(TreeNode* root)
     {
-        int ans=0;
-        solve(root,ans);
-        return ans;
+        int diameter = 0;
+        calculateDiameter(root, diameter);
+        return diameter;
     }
 };
+    
