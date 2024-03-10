@@ -1,19 +1,12 @@
 class Solution {
 public:
-    vector<int> intersection(vector<int>& nums1, vector<int>& nums2)
-    {
-    unordered_map<int,bool> visited;
+  vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+    unordered_set<int> s1(nums1.begin(), nums1.end());
+    unordered_set<int> s2(nums2.begin(), nums2.end());
     vector<int> ans;
-    for(int i = 0;i<nums1.size();i++)
-        visited[nums1[i]] = true;
-    for(int j = 0;j<nums2.size();j++)
-    {
-        if(visited[nums2[j]])
-        {
-            ans.push_back(nums2[j]);
-            visited[nums2[j]]=false;
-        }
-    }
+    for(int it:s1)
+        if(s2.contains(it))
+            ans.emplace_back(it);
     return ans;
-}
+  }
 };
