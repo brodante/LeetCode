@@ -2,9 +2,9 @@ class Solution {
 private:
     vector<vector<int>> merge(vector<vector<int>>& itr)
     {
-        if(!itr.size())
-            return itr;
-        sort(itr.begin(),itr.end());
+        //if(!itr.size())
+        //    return itr;
+        //sort(itr.begin(),itr.end());
         vector<vector<int>> ans;
         vector<int> tmp=itr[0];
         for(auto it:itr)
