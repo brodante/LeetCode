@@ -4,7 +4,7 @@ public:
     {
         int ans=1;
         //sort(points.begin(),points.end(),-1);
-        sort(points.begin(),points.end(),[](vector<int> a,vector<int> b)
+        sort(points.begin(),points.end(),[](const vector<int>& a,const vector<int>& b)
         {
             return a[1]<b[1]; // Sort by end position
         });
