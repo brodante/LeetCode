@@ -12,29 +12,34 @@ class Solution {
 public:
     bool isPalindrome(ListNode* head)
     {
-        if(!head->next)
+        bool odd=false;
+        if(head->next==nullptr)
             return true;
-        ListNode *slow=head,*fast=head;
-        while(fast->next&&fast->next->next)
+        if(head->next->next==nullptr&&head->val!=head->next->val)
+            return false;
+        ListNode *fast=head, *slow=head;
+        stack<int> tmp;
+        while(fast!=nullptr&&fast->next!=nullptr)
         {
-            slow=slow->next;
+            tmp.push(slow->val);
             fast=fast->next->next;
+            slow=slow->next;
         }
-        ListNode *prev=nullptr,*next=nullptr,*curr=slow->next;
-        while(curr!=nullptr)
+        fast=head;
+        while(fast!=nullptr)
         {
-            next=curr->next;
-            curr->next=prev;
-            prev=curr;
-            curr=next;
+            odd=!odd;
+            fast=fast->next;
         }
-        ListNode *first=head,*second=prev;
-        while(second)
+        cout<<odd;
+        if(odd)
+            slow=slow->next;
+        while(slow!=nullptr)
         {
-            if(first->val!=second->val)
+            if(tmp.empty()||slow->val!=tmp.top())
                 return false;
-            first=first->next;
-            second=second->next;
+            tmp.pop();
+            slow=slow->next;
         }
         return true;
     }
