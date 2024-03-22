@@ -31,7 +31,6 @@ public:
             odd=!odd;
             fast=fast->next;
         }
-        cout<<odd;
         if(odd)
             slow=slow->next;
         while(slow!=nullptr)
