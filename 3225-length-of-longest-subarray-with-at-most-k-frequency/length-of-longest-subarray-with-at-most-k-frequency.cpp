@@ -8,10 +8,7 @@ public:
         {
             ++mpp[nums[j]];
             while(i<=j&&mpp[nums[j]]>k)
-            {
-                --mpp[nums[i]];
-                ++i;
-            }
+                --mpp[nums[i++]];
             ans=max(ans,j-i+1);
         }
         return ans;
