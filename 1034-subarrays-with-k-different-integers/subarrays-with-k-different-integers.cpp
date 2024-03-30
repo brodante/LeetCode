@@ -1,20 +1,33 @@
 class Solution {
 public:
-    int subarraysWithKDistinct(vector<int>& A, int K)
+    int subarraysWithKDistinct(vector<int>& nums, int k)
     {
-        return atMostK(A,K)- atMostK(A,K-1);
-    }
-    int atMostK(vector<int>& A, int K) {
-        int i = 0, res = 0;
-        unordered_map<int, int> count;
-        for (int j = 0; j < A.size(); ++j) {
-            if (!count[A[j]]++) K--;
-            while (K < 0) {
-                if (!--count[A[i]]) K++;
-                i++;
+        unordered_map<int,int> mpp;
+        int lnear,lfar,ans;
+        lnear=lfar=ans=0;
+        
+        for(int hi=0;hi<nums.size();++hi)
+        {
+            ++mpp[nums[hi]];
+
+            while(mpp.size()>k)
+            {
+                --mpp[nums[lnear]];
+                if(mpp[nums[lnear]]==0)
+                    mpp.erase(nums[lnear]);
+                ++lnear;
+                lfar=lnear;
             }
-            res += j - i + 1;
+
+            while(mpp[nums[lnear]]>1)
+            {
+                --mpp[nums[lnear]];
+                ++lnear;
+            }
+            if(mpp.size()==k)
+                ans+=lnear-lfar+1;
         }
-        return res;
+
+        return ans;
     }
 };
