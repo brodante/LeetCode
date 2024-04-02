@@ -13,7 +13,7 @@ public:
                 return false;
         for(int i=0;i<n1;i++)
             hash[str2[i]]=str1[i];
-        for(int i=0;i<n1;i++)
+        for(int i=0;i<n1;++i)
             if(str1[i]!=hash[str2[i]])
                 return false;
         
