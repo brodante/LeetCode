@@ -30,6 +30,8 @@ public:
         for(int i=0;i<n;++i)
         {
             int y=right[i]-left[i]-1;
+            cout<<left[i]<<"&"<<right[i]<<' ';
+            
             ans=max(ans,heights[i]*y);
         }
 
