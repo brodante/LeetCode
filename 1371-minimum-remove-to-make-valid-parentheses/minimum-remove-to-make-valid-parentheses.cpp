@@ -8,10 +8,17 @@ public:
         {
             if(s[i]=='(')
                 tmp.push(i);
-            else if(s[i]==')'&&!tmp.empty()&&s[tmp.top()]=='(')
+            else if(s[i]==')')
+            {
+                if(!tmp.empty()&&s[tmp.top()]=='(')
+                    tmp.pop();
+                else
+                    tmp.push(i);
+            }
+            /*else if(s[i]==')'&&!tmp.empty()&&s[tmp.top()]=='(')
                 tmp.pop();
             else if(s[i]==')')
-                tmp.push(i);
+                tmp.push(i);*/
         }
         for(int i=s.size()-1;i>=0;--i)
         {
