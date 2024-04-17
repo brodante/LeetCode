@@ -11,18 +11,18 @@
  */
 class Solution {
 private:
-    int dfs(TreeNode *node, int num)
+    int spsc(TreeNode *root, int tmp)
     {
-        if(node==nullptr)
+        if(!root)
             return 0;
-        num=num*10+node->val;
-        if(node->left==nullptr&&node->right==nullptr)
-            return num;
-        return dfs(node->right,num)+dfs(node->left,num);
+        tmp=(tmp*10)+root->val;
+        if(!root->left&&!root->right)
+            return tmp;
+        return spsc(root->left,tmp)+spsc(root->right,tmp);
     }
 public:
     int sumNumbers(TreeNode* root)
     {
-        return dfs(root,0);        
+        return spsc(root, 0);
     }
 };
