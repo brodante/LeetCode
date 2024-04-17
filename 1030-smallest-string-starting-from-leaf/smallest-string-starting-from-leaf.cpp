@@ -15,7 +15,8 @@ private:
     {
         if(!root)
             return "";
-        curr=(string)((char)('a'+root->val)+curr); //I hope there's a better way lmao
+        //curr=(string)((char)('a'+root->val)+curr); //I hope there's a better way lmao
+        curr=(char)('a'+root->val)+curr;
         if(root->left&&root->right)
         {
             return min(dfs(root->left,curr), dfs(root->right,curr));
