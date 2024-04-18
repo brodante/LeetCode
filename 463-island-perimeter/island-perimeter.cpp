@@ -18,6 +18,6 @@ public:
                 }
             }
         }
-        return island*4 - 2*neighbor;
-    }
-};
+        return island*4 - 2*neighbor; // each island has 4 sides perimeter 
+    }                                 // if 2 islands are adjacent(neighbours)
+};                                    // then we subtract the touching side, i.e. 2 times neighbour
