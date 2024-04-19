@@ -12,10 +12,10 @@ private:
             int x = rc.first;
             int y = rc.second;
             vector<pair<int,int>> directions={{-1,0},{1,0},{0, 1},{0,-1}}; //left, right, up, down
-            for(auto& dir:directions)
+            for(pair<int,int> &it:directions)
             {
-                int nx= x+ dir.first;
-                int ny= y+ dir.second;
+                int nx= x+ it.first;
+                int ny= y+ it.second;
                 if(nx>=0 && nx<grid.size() && ny>=0 && ny<grid[0].size() && grid[nx][ny]=='1' && !mpp[nx][ny])
                 {
                     mpp[nx][ny]=true;
