@@ -1,13 +1,13 @@
 class Solution
 {
 private:
-    void removeIsland(int i, int j, vector<vector<bool>> &tmp)
+    int removeIsland(int i, int j, vector<vector<bool>> &tmp)
     {
         int r=tmp.size();
         int c=tmp[0].size();
 
         if(i<0||i==r||j<0||j==c||tmp[i][j]==0)
-            return ;
+            return 0;
         
         tmp[i][j]=0;
 
@@ -15,6 +15,7 @@ private:
         removeIsland(i, j-1, tmp);
         removeIsland(i+1, j, tmp);
         removeIsland(i-1, j, tmp);
+        return 1;
     }
 public:
     int numIslands(vector<vector<char>>& grid)
@@ -34,8 +35,8 @@ public:
             for(int j=0;j<c;++j)
                 if(tmp[i][j]==1)
                 {
-                    ans+=1;
-                    removeIsland(i,j,tmp);
+                    //ans+=1;
+                    ans+=removeIsland(i,j,tmp);
                 }
         return ans;
     }
