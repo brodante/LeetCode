@@ -11,7 +11,7 @@ private:
         
         tmp[i][j]='0';
 
-        removeIsland(i, j+1, tmp);
+        removeIsland(i, j+1, tmp); //connected islands go brrrrrr
         removeIsland(i, j-1, tmp);
         removeIsland(i+1, j, tmp);
         removeIsland(i-1, j, tmp);
