@@ -41,6 +41,7 @@ public:
                 {
                     bfs(i,j,grid,mpp);
                     ++ans;
+                    //or ans +=bfs(i, j, grid, mpp);
                 }
         return ans;
     }
