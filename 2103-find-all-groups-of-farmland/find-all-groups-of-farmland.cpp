@@ -6,18 +6,17 @@ void dfs(int i, int j, vector<vector<bool>> &tmp, int &a1, int &a2)
         int r=tmp.size();
         int c=tmp[0].size();
 
-        if(i<0||i==r||j<0||j==c||tmp[i][j]==0)
-            return;
-        
-        a1=max(a1,i);
-        a2=max(a2,j);
+        if(i>=0&&i<r&&j>=0&&j<c&&tmp[i][j]==1)
+        {
+            a1=max(a1,i);
+            a2=max(a2,j);
+            tmp[i][j]=0;
 
-        tmp[i][j]=0;
-
-        dfs(i, j+1, tmp, a1, a2); //connected farm lands go brrrrrr X again lmao
-        dfs(i, j-1, tmp, a1, a2);
-        dfs(i+1, j, tmp, a1, a2);
-        dfs(i-1, j, tmp, a1, a2);
+            dfs(i, j+1, tmp, a1, a2); //connected farm lands go brrrrrr X again lmao
+            dfs(i, j-1, tmp, a1, a2);
+            dfs(i+1, j, tmp, a1, a2);
+            dfs(i-1, j, tmp, a1, a2);
+        }
     }
 public:
     vector<vector<int>> findFarmland(vector<vector<int>>& land)
