@@ -30,7 +30,7 @@ public:
         //for(int i=0;i<r;++i)
         //    for(int j=0;j<c;++j)
         //        if(land[i][j]==1)
-        //            tmp[i][j]=1;
+        //            tmp[i][j]=1; //BRO I WAS AT 1586ms and beating 5% sol now im at 80% 87ms fr
 
         for(int i=0;i<r;++i)
             for(int j=0;j<c;++j)
