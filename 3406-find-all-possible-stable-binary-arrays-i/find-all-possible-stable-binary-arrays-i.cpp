@@ -18,7 +18,7 @@ public:
                 }
             }
         }
-        return (dp[y][x][0]+dp[y][x][1])>MOD?(dp[y][x][0]+dp[y][x][1])%MOD:(dp[y][x][0]+dp[y][x][1]);
+        return (dp[y][x][0]+dp[y][x][1])% MOD;
         
     }
 };
