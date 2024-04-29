@@ -1,52 +1,44 @@
 class Solution {
 private:
-    long base_result=0;
-    vector<int> subtreecount;
+    vector<unordered_set<int>> adj;
+    vector<int> subtreecount, ans;
     int N;
-    int dfsBase(unordered_map<int, vector<int>> &adj, int curr_node, int prev_node, int curr_depth)
+    void dfsBase(int root, int pre)
     {
-        int total_count=1;
-        base_result+=curr_depth;
-        
-        for(int &it:adj[curr_node])
+        for(int it:adj[root])
         {
-            if(it==prev_node)
+            if(it==pre)
                 continue;
-            total_count+=dfsBase(adj, it, curr_node, curr_depth+1);
+            dfsBase(it, root);
+            subtreecount[root]+=subtreecount[it];
+            ans[root]+=ans[it]+subtreecount[it];
         }
-        subtreecount[curr_node]=total_count;
-
-        return total_count;
     }
-    void dfs(unordered_map<int, vector<int>> &adj, int parent_node, int prev_node, vector<int> &ans)
+
+    void dfs(int root, int pre)
     {
-        for(int &it:adj[parent_node])
+        for(int it:adj[root])
         {
-            if(it==prev_node)
+            if(it==pre)
                 continue;
-            ans[it]=ans[parent_node]-subtreecount[it]+(N-subtreecount[it]);
-            dfs(adj, it, parent_node,ans);
+            ans[it]=ans[root]-subtreecount[it]+N-subtreecount[it];
+            dfs(it, root);
         }
     }
 public:
     vector<int> sumOfDistancesInTree(int n, vector<vector<int>>& edges)
     {
-        unordered_map<int, vector<int>> adj;
-        N=n;
-        subtreecount.assign(n,0);
+        adj.resize(n);
+        ans.assign(n,0);
+        subtreecount.assign(n,1);
         for(vector<int> &it:edges)
         {
-            adj[it[0]].emplace_back(it[1]);
-            adj[it[1]].emplace_back(it[0]);
+            adj[it[0]].insert(it[1]);
+            adj[it[1]].insert(it[0]);
         }
-        base_result=0;
-
-        dfsBase(adj, 0,-1, 0);
-
-        vector<int> ans(n,0);
-        ans[0]=base_result;
-
-        dfs(adj, 0, -1, ans);
+        N=n;
+        dfsBase(0, -1);
+        dfs(0, -1);
         return ans;
     }
 };
