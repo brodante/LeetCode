@@ -30,7 +30,7 @@ public:
     {
         adj.resize(n);
         ans.assign(n,0);
-        subtreecount.assign(n,1);
+        subtreecount.assign(n,1); // all nodes are at 1 depth from themselves
         for(vector<int> &it:edges)
         {
             adj[it[0]].insert(it[1]);
