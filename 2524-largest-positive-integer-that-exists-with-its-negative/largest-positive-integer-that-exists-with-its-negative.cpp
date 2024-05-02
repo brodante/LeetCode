@@ -2,13 +2,13 @@ class Solution {
 public:
     int findMaxK(vector<int>& nums)
     {
-        vector<int> hashh(2001,0);
+        vector<bool> hashh(2001,0);
         int ans=-1;
         for(int &it:nums)
         {
-            if(hashh[-it+1000])
+            hashh[it+1000]=true;
+            if(hashh[it+1000]&&hashh[1000-it])
                 ans=max(ans, abs(it));
-            ++hashh[it+1000];
         }
         return ans;
     }
