@@ -26,7 +26,7 @@ public:
         while(i<m || i<n)
         {
             int a= i<m? stoi(v1[i]):0;
-            int b= i<n? stoi(v2[i]):0;
+            int b= i<n? stoi(v2[i]):0; // here was a silly mistake
 
             if(a<b)
                 return -1;
