@@ -9,26 +9,29 @@
  * };
  */
 class Solution {
-private:
-    int solve(ListNode *head)
-    {
-        if(head==nullptr)
-            return 0;
-        int ans=(head->val)*2 + solve(head->next);
-        head->val=ans%10;
-        return ans/10;
-    }
 public:
     ListNode* doubleIt(ListNode* head)
     {
-        int carry=solve(head);
-        if(carry!=0)
+        stack<int> st;
+        int curr=0;
+        while(head)
         {
-            ListNode *dummy=new ListNode();
-            dummy->val=carry;
-            dummy->next=head;
-            return dummy;
+            st.push(head->val);
+            head=head->next;
         }
-        return head;
+        //ListNode *tmp=new ListNode(0); adds an extra 0 node in the end
+        ListNode *tmp=nullptr;
+        while(!st.empty()||curr!=0)
+        {
+            tmp=new ListNode(0, tmp);
+            if(!st.empty())
+            {
+                curr+=st.top()*2;
+                st.pop();
+            }
+            tmp->val=curr%10;
+            curr/=10;
+        }
+        return tmp;
     }
 };
