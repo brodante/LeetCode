@@ -5,8 +5,8 @@ public:
         int ans=0;
         for(auto it:details)
             {
-                int age=(it[11]-'0')*10;
-                age+=(it[12]-'0');
+                int age=stoi(it.substr(11,2));
+                //age+=(it[12]-'0');
                 if(age>60)
                     ++ans;
             }
